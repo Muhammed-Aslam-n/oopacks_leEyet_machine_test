@@ -1,16 +1,30 @@
 # oopacks
 
-A new Flutter project.
+This repository contains the source code for the Flutter app I created as part of a machine test for the Flutter developer position at LeEYET Techno Hub.
+
 
 ## Getting Started
+- **Provider (^6.0.5):**
+  - State management made simple and scalable.
+  - Efficiently manage and propagate application state changes.
 
-This project is a starting point for a Flutter application.
+- **Google Fonts (^6.1.0):**
+  - Easily incorporate beautiful and customizable typography.
+  - Access a vast library of fonts from Google Fonts.
 
-A few resources to get you started if this is your first Flutter project:
+- **Path Provider (^2.1.1):**
+  - Retrieve common directories on the device's file system.
+  - Simplify file path handling for reading and writing files.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+- **Shared Preferences (^2.2.2):**
+  - Store and retrieve simple data persistently across app launches.
+  - Manage user preferences seamlessly.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- **Dio (^latest_version):**
+  - Powerful HTTP client for Dart with support for Interceptors, FormData, Request Cancellation, File Downloading, and more.
+  - Effortlessly make network requests and handle responses with Dio.
+
+- **Share Plus (^7.0.0):**
+  - Enable easy content sharing to other platforms.
+  - Streamline sharing text, images, and links.
+
