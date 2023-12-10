@@ -50,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
         onWillPop: onWillPop,
         child: Scaffold(
           resizeToAvoidBottomInset: false,
-          backgroundColor: Theme.of(context).primaryColor,
+          // backgroundColor: Theme.of(context).primaryColor,
           body: GestureDetector(
             onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
             child: Form(
@@ -58,39 +58,33 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Container(
-                    height: size.height * 0.25,
-                    alignment: Alignment.center,
-                    child: PoppinsText(
-                      data: 'OOPACKS',
-                      color: Theme.of(context).colorScheme.secondary,
-                      fontSize: 24,
-                    ),
+                  SizedBox(
+                    height: size.height * 0.16,
                   ),
                   Expanded(
                     child: Container(
                       padding: const EdgeInsets.symmetric(horizontal: 30),
-                      decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(80),
-                          ),
-                          color: Theme.of(context).colorScheme.secondary),
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(80),
+                        ),
+                        // color: Theme.of(context).colorScheme.background,
+                      ),
                       child: Column(
                         children: [
-                          SizedBox(
-                            height: size.height * 0.06,
-                          ),
                           PoppinsText(
                             data: 'Login',
-                            color: Theme.of(context).colorScheme.primary,
-                            fontSize: 20,
+                            color: Theme.of(context).colorScheme.secondary,
+                            fontSize: 24,
                             fontWeight: FontWeight.w600,
+                            letterSpacing: 2,
                           ),
                           SizedBox(
                             height: size.height * 0.03,
                           ),
                           TextFormWidget(
                             textFormTitle: 'Email',
+                            // showHint: showHint,
                             hintText: hintEmail,
                             controller: emailController,
                             inputType: TextInputType.emailAddress,
@@ -102,6 +96,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           TextFormWidget(
                             textFormTitle: 'Password',
+                            // showHint: showHint,
                             hintText: hintPassword,
                             controller: passwordController,
                             inputType: TextInputType.visiblePassword,
@@ -144,32 +139,34 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   Container(
-                    color: Theme.of(context).colorScheme.secondary,
+                    color: Theme.of(context).colorScheme.background,
                     alignment: Alignment.center,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         PoppinsText(
                           data: "Don't have any account?",
-                          color: Theme.of(context).primaryColor,
+                          color: Theme.of(context).colorScheme.primary,
                         ),
                         TextButton(
                           onPressed: () {
-
                             Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (builder) => const SignUpScreen(),
-                            ),
-                          );
+                              MaterialPageRoute(
+                                builder: (builder) => const SignUpScreen(),
+                              ),
+                            );
                             _formKey.currentState!.reset();
                           },
-                          child: const PoppinsText(
-                            data: 'Sign Up',
-                            fontWeight: FontWeight.w600,
-                          ),
+                          child: PoppinsText(
+                              data: 'Sign Up',
+                              fontWeight: FontWeight.w600,
+                              color: Theme.of(context).colorScheme.secondary),
                         ),
                       ],
                     ),
+                  ),
+                  SizedBox(
+                    height: 15,
                   )
                 ],
               ),
@@ -207,11 +204,12 @@ class _LoginScreenState extends State<LoginScreen> {
           _formKey.currentState?.reset();
         });
         showCustomSnackBar(
-            context: context,
-            message: 'Authentication Failed',
-            success: false,
-            textColor: Colors.white,
-            duration: const Duration(seconds: 2));
+          context: context,
+          message: 'Authentication Failed',
+          success: false,
+          textColor: Colors.white,
+          duration: const Duration(seconds: 2),
+        );
       }
     }
   }
@@ -225,15 +223,18 @@ class TextFormWidget extends StatelessWidget {
   final String? Function(String?)? validator;
   final String? hintText;
 
-  const TextFormWidget(
-      {Key? key,
-      required this.textFormTitle,
-      required this.controller,
-      required this.inputType,
-      required this.obscureText,
-      this.validator,
-      required this.hintText})
-      : super(key: key);
+  // final bool? showHint;
+
+  const TextFormWidget({
+    Key? key,
+    required this.textFormTitle,
+    required this.controller,
+    required this.inputType,
+    required this.obscureText,
+    this.validator,
+    required this.hintText,
+    // this.showHint,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -242,14 +243,14 @@ class TextFormWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        color: Colors.white,
+        // color: Colors.white,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           PoppinsText(
             data: textFormTitle,
-            color: Theme.of(context).primaryColor,
+            color: Theme.of(context).colorScheme.primary,
             fontWeight: FontWeight.w600,
           ),
           Expanded(
@@ -260,15 +261,24 @@ class TextFormWidget extends StatelessWidget {
               obscureText: obscureText,
               textInputAction: TextInputAction.next,
               decoration: InputDecoration(
-                  border: fieldBorder,
-                  hintText: hintText,
-                  hintStyle:
-                      GoogleFonts.poppins(color: Colors.grey, fontSize: 13),
-                  // contentPadding: EdgeInsets.zero,
-                  enabledBorder: fieldBorder,
-                  focusedBorder: fieldBorder,
-                  errorBorder: InputBorder.none,
-                  focusedErrorBorder: InputBorder.none),
+                border: fieldBorder,
+                hintText:  hintText ,
+                hintStyle:
+                    GoogleFonts.poppins(color: Colors.grey, fontSize: 13),
+                // contentPadding: EdgeInsets.zero,
+                enabledBorder: fieldBorder,
+                focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Theme.of(context).colorScheme.background)),
+                errorBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Theme.of(context)
+                            .colorScheme
+                            .copyWith(background: Colors.red)
+                            .background,
+                        width: 0.3)),
+                focusedErrorBorder: InputBorder.none,
+              ),
               inputFormatters: inputType != TextInputType.visiblePassword
                   ? [
                       FilteringTextInputFormatter.deny(
@@ -280,9 +290,9 @@ class TextFormWidget extends StatelessWidget {
               validator: validator,
             ),
           ),
-          SizedBox(
-            height: MediaQuery.of(context).size.width * 0.01,
-          )
+          // SizedBox(
+          //   height: MediaQuery.of(context).size.width * 0.01,
+          // )
         ],
       ),
     );

@@ -47,12 +47,18 @@ class _LaunchScreenState extends State<LaunchScreen> {
         child: Consumer<LaunchProvider>(
           builder: (context, authProvider, _) {
             if (mounted) {
-              Future.delayed(const Duration(seconds: 3), () {
-                Navigator.pushReplacement(
-                  context, authProvider.isLoggedIn?
-                  CustomPageRoute(page: const HomeScreen()):CustomPageRoute(page: const LoginScreen()),
-                );
-              });
+              Future.delayed(
+                const Duration(seconds: 3),
+              ).then(
+                (value) => Navigator.pushAndRemoveUntil(
+                  context,
+                  // authProvider.isLoggedIn
+                  //     ?
+                  CustomPageRoute(page: const HomeScreen()),
+                      // : CustomPageRoute(page: const LoginScreen()),
+            ModalRoute.withName('/')
+                ),
+              );
             }
             return Center(
               child: Column(

@@ -29,7 +29,7 @@ class SharedPreferenceHelper{
     SharedPreferences pref = await SharedPreferences.getInstance();
     final AppThemes? res = pref.getInt(_darkThemeKey,)==1?AppThemes.darkTheme:AppThemes.lightTheme;
     debugPrint('fetchedAppTheme $res');
-    return AppThemes.darkTheme;
+    return res;
   }
 
  static Future<bool?> setUserLoggedIn()async{

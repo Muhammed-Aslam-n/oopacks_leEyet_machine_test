@@ -107,7 +107,7 @@ class _GreetingScreenState extends State<GreetingScreen> {
         timer.cancel();
         _greetingStreamController
             .addError('assets/launch_icons/oopacks_launch_icon.png');
-        _greetingStreamController.close();
+        // _greetingStreamController.close();
       }
     });
   }
@@ -336,13 +336,13 @@ class DrawerItemWidget extends StatelessWidget {
               width: 30,
               color: Theme
                   .of(context)
-                  .highlightColor,
+                  .colorScheme.primary,
             )),
         title: PoppinsText(
           data: titleText ?? '',
           color: Theme
               .of(context)
-              .highlightColor,
+              .colorScheme.secondary,
         ),
       ),
     );

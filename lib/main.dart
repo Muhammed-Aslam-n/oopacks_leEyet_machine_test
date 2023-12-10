@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oopacks/constants/app_theme.dart';
 import 'package:oopacks/providers/auth_provider.dart';
 import 'package:oopacks/providers/launch_provider/launch_provider.dart';
 import 'package:oopacks/providers/theme_provider/theme_provider.dart';
@@ -34,7 +35,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: Provider.of<ThemeProvider>(context)
-            .currentTheme, // Use the custom theme from the ThemeModel
+            .currentTheme,
+        // theme: MyTheme.lightTheme,
+        // darkTheme: MyTheme.darkTheme,
+        // themeMode: ThemeMode.dark,
+
         home: const LaunchScreen()
     );
   }
